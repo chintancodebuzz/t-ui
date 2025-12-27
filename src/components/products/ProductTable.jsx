@@ -38,13 +38,35 @@ const ProductTable = ({
     setProductToDelete(product);
     setDeleteModalOpen(true);
   };
+  
+  const sanitizeFilters = (f = {}) => {
+    return Object.entries(f).reduce((acc, [k, v]) => {
+      if (v == null) return acc;
+      if (typeof v === "string") {
+        const t = v.trim();
+        if (t !== "") acc[k] = t;
+      } else if (Array.isArray(v)) {
+        if (v.length) acc[k] = v;
+      } else {
+        acc[k] = v;
+      }
+      return acc;
+    }, {});
+  };
 
   const confirmDelete = async () => {
     if (productToDelete) {
       await dispatch(deleteProduct(productToDelete._id));
       setDeleteModalOpen(false);
       setProductToDelete(null);
-      await dispatch(fetchProducts());
+      const cleanFilters = sanitizeFilters(filters);
+      await dispatch(
+        fetchProducts({
+          page: pagination.currentPage,
+          limit: pagination.itemsPerPage,
+          ...cleanFilters,
+        })
+      );
     }
   };
 
@@ -61,11 +83,12 @@ const ProductTable = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
     setSelectedIds([]);
     dispatch(setPage(page));
+    const cleanFilters = sanitizeFilters(filters);
     dispatch(
       fetchProducts({
         page,
         limit: pagination.itemsPerPage,
-        ...filters,
+        ...cleanFilters,
       })
     );
   };
