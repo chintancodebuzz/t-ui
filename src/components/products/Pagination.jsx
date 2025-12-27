@@ -3,7 +3,7 @@
 import { Icon } from "@iconify/react"
 import Button from "../ui/Button"
 
-const Pagination = ({ currentPage, totalPages, totalItems, onPageChange, loading }) => {
+const Pagination = ({ currentPage, totalPages, totalItems, onPageChange, loading, itemsPerPage = 10 }) => {
   const getPages = () => {
     const pages = []
     const showMax = 5
@@ -30,8 +30,8 @@ const Pagination = ({ currentPage, totalPages, totalItems, onPageChange, loading
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-[var(--border-color)]">
       <div className="text-sm text-[var(--text-tertiary)]">
-        Showing <span className="font-semibold text-[var(--text-primary)]">{(currentPage - 1) * 10 + 1}</span> to{" "}
-        <span className="font-semibold text-[var(--text-primary)]">{Math.min(currentPage * 10, totalItems)}</span> of{" "}
+        Showing <span className="font-semibold text-[var(--text-primary)]">{(currentPage - 1) * itemsPerPage + 1}</span> to{" "}
+        <span className="font-semibold text-[var(--text-primary)]">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of{" "}
         <span className="font-semibold text-[var(--text-primary)]">{totalItems}</span> results
       </div>
 

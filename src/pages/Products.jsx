@@ -59,7 +59,7 @@ const Products = () => {
       dispatch(
         fetchProducts({
           page: pagination.currentPage,
-          limit: pagination.itemsPerPage,
+          limit: 5,
           ...filters,
         })
       );
@@ -68,7 +68,6 @@ const Products = () => {
     dispatch,
     filters,
     pagination.currentPage,
-    pagination.itemsPerPage,
     isInitialLoad,
   ]);
 

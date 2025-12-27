@@ -63,7 +63,7 @@ const ProductTable = ({
       await dispatch(
         fetchProducts({
           page: pagination.currentPage,
-          limit: pagination.itemsPerPage,
+          limit: 5,
           ...cleanFilters,
         })
       );
@@ -87,7 +87,7 @@ const ProductTable = ({
     dispatch(
       fetchProducts({
         page,
-        limit: pagination.itemsPerPage,
+        limit: 5,
         ...cleanFilters,
       })
     );
@@ -283,6 +283,7 @@ const ProductTable = ({
             currentPage={pagination.currentPage}
             totalPages={pagination.totalPages}
             totalItems={pagination.totalItems}
+            itemsPerPage={pagination.itemsPerPage}
             onPageChange={handlePageChange}
             loading={loading}
           />
@@ -547,6 +548,7 @@ const ProductTable = ({
           currentPage={pagination.currentPage}
           totalPages={pagination.totalPages}
           totalItems={pagination.totalItems}
+          itemsPerPage={pagination.itemsPerPage}
           onPageChange={handlePageChange}
           loading={loading}
         />
