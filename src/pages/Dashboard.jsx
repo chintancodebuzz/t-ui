@@ -55,7 +55,7 @@ const Dashboard = () => {
     },
   ];
 
-  if (loading) {
+  if (loading || stats == null || products.length === 0) {
     return (
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -87,12 +87,12 @@ const Dashboard = () => {
               {[...Array(5)].map((_, i) => (
                 <div key={i} className="space-y-2">
                   <Skeleton className="h-4 w-32" />
-                  <div className="w-full bg-[var(--bg-secondary)] rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-[var(--primary-500)] to-[var(--primary-600)] rounded-full h-2"
-                      style={{ width: `${20 + i * 12}%` }}
-                    />
-                  </div>
+                      <div className="w-full bg-[var(--bg-secondary)] rounded-full h-2">
+                        <div
+                          className="bg-[var(--border-color)] rounded-full h-2"
+                          style={{ width: `${20 + i * 12}%` }}
+                        />
+                      </div>
                 </div>
               ))}
             </div>
