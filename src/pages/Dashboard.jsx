@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductStats, fetchProducts } from "../store/slices/productSlice";
 import { Icon } from "@iconify/react";
 import Button from "../components/ui/Button";
+import Skeleton from "../components/ui/Skeleton";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,76 @@ const Dashboard = () => {
       change: "+5%",
     },
   ];
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={i}
+              className="card hover:scale-[1.02] hover:shadow-md transition-all"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <Skeleton className="h-4 w-24 mb-2" />
+                  <Skeleton className="h-8 w-20 mb-2" />
+                  <Skeleton className="h-4 w-12" />
+                </div>
+                <div className="p-3 rounded-lg bg-[var(--bg-secondary)]">
+                  <Skeleton className="w-8 h-8 rounded" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="card">
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
+              Category Distribution
+            </h3>
+            <div className="space-y-4">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="space-y-2">
+                  <Skeleton className="h-4 w-32" />
+                  <div className="w-full bg-[var(--bg-secondary)] rounded-full h-2">
+                    <div
+                      className="bg-gradient-to-r from-[var(--primary-500)] to-[var(--primary-600)] rounded-full h-2"
+                      style={{ width: `${20 + i * 12}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                Recent Products
+              </h3>
+            </div>
+            <div className="space-y-4">
+              {[...Array(5)].map((_, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-3 p-3 rounded-lg"
+                >
+                  <Skeleton className="w-12 h-12 rounded-lg" />
+                  <div className="flex-1">
+                    <Skeleton className="h-4 w-3/4 mb-2" />
+                    <Skeleton className="h-3 w-1/2" />
+                  </div>
+                  <Skeleton className="h-6 w-16 rounded-full" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
