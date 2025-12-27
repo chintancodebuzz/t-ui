@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap");
+
+/* Root variables for light mode */
+:root {
+  /* Light Mode - Premium Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fc;
+  --bg-tertiary: #f0f2f7;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --border-color: #e2e8f0;
+  --border-color-light: #f1f5f9;
+
+  /* Brand Colors - Premium Indigo */
+  --primary-50: #f0f4ff;
+  --primary-100: #e0e7ff;
+  --primary-200: #c7d2fe;
+  --primary-500: #6366f1;
+  --primary-600: #4f46e5;
+  --primary-700: #4338ca;
+
+  /* Accent Colors */
+  --accent-emerald: #10b981;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-blue: #3b82f6;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+html.dark {
+  /* Dark Mode - Deep Premium Colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #334155;
+  --border-color-light: #475569;
+
+  /* Brand Colors - Lighter for dark mode */
+  --primary-50: #4f46e5;
+  --primary-100: #818cf8;
+  --primary-200: #c7d2fe;
+  --primary-500: #818cf8;
+  --primary-600: #6366f1;
+  --primary-700: #4f46e5;
+
+  /* Shadows for dark mode */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--bg-secondary)] text-[var(--text-primary)] transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    @apply transition-colors duration-300;
+  }
+
+  /* Custom scrollbar styling for modals and dropdowns */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) var(--bg-secondary);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-xl shadow-sm transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2.5 bg-[var(--primary-600)] hover:bg-[var(--primary-700)] text-white rounded-lg transition-all duration-200 font-medium shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2.5 bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--border-color)] transition-all duration-200 font-medium;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-500)] focus:border-transparent transition-all duration-200 text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)];
+  }
+
+  .card {
+    @apply bg-[var(--bg-primary)] rounded-xl border border-[var(--border-color)] p-6 transition-all duration-300 shadow-sm;
+  }
+
+  /* Added skeleton animation and styles for both dark and light modes */
+  .skeleton {
+    @apply relative overflow-hidden bg-[var(--bg-tertiary)] rounded;
+  }
+
+  .skeleton::after {
+    @apply content-[''] absolute inset-0 -translate-x-full;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+
+  html.dark .skeleton::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
