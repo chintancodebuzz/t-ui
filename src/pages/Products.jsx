@@ -106,7 +106,7 @@ const Products = () => {
     dispatch(
       fetchProducts({
         page: pagination.currentPage,
-        limit: 10,
+        limit: 5,
         ...filters,
       })
     );
