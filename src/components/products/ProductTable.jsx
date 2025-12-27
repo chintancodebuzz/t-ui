@@ -461,7 +461,7 @@ const ProductTable = ({
                     </div>
                   </td>
                   <td className="py-4 px-4">
-                    <span className="px-3 py-1 bg-[var(--primary-50)] dark:bg-[var(--primary-600)]/20 text-[var(--primary-600)] dark:text-[var(--primary-400)] rounded-full text-sm font-medium">
+                    <span className="px-3 py-1 bg-[var(--primary-50)] dark:bg-[var(--primary-600)]/20  dark:text-[var(--primary-400)] rounded-full text-sm font-medium">
                       {product.category}
                     </span>
                   </td>

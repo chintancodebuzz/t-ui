@@ -43,7 +43,7 @@ const Sidebar = () => {
               twMerge(
                 "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group",
                 isActive
-                  ? "bg-[var(--primary-50)] dark:bg-[var(--primary-600)]/20 text-[var(--primary-600)] dark:text-[var(--primary-400)] shadow-sm"
+                  ? "bg-[var(--primary-50)] dark:bg-[var(--primary-600)]/20  dark:text-[var(--primary-400)] shadow-sm"
                   : "text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] transition-colors",
               )
             }
